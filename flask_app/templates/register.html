@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--<title>Registration Form in HTML CSS</title>-->
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+  </head>
+  <body id="background-image">
+    <img id="background-image" src="{{ url_for('static', filename='low-angle-view-unrecognizable-muscular-build-man-preparing-lifting-barbell-health-club_637285-2497.avif') }}" alt="">
+    <section class="container">
+      <header>REGISTER</header>
+      <form action="/register" method="post"  class="form">
+        <div class="input-box">
+          <label for="first_name">First Name</label>
+          <input type="text" name="first_name" placeholder="Enter first name" required />
+        </div>
+        <div class="input-box">
+          <label for="last_name">Last Name</label>
+          <input type="text" name="last_name" placeholder="Enter last name" required />
+        </div>
+
+        <div class="input-box">
+          <label for="email">Email Address</label>
+          <input type="text" name="email" placeholder="Enter email address" required />
+        </div>
+
+        <div class="input-box">
+          <label for="password">Password</label>
+          <input type="text"  name="password" placeholder="Enter password " required />
+        </div>
+
+        <div class="input-box">
+          <label for="password">Confirm Password</label>
+          <input type="text" name="confirm_password" placeholder="Enter password again" required />
+        </div>
+
+        <div class="register">
+          <div class="input-box">
+            <label for="age">Age</label>
+            <input type="number" name="age" placeholder="Enter Your Age" required />
+          </div>
+  
+          <div class="input-box">
+            <label for="height"> Height</label>
+            <input type="number" name="height" placeholder="Enter Your Height" required />
+          </div>
+  
+          <div class="input-box">
+            <label for="weight">Weight</label>
+            <input type="number" name="weight" placeholder="Enter Your Weight" required />
+          </div>
+        </div>
+
+
+        <div class="column">
+        <button type="submit">Submit</button>
+      </form>
+      <a class="d-flex justify-content-center abc" href="/loginPage">Already have an account? Login!</a>
+    </section>
+  </body>
+</html>

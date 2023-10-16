@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sider Menu Bar CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  </head>
+  <body>
+    <div>
+      <div class="h1">
+        <h1 class="mt-25">{{loggedUser.first_name}} ,Welcome To Fitness Tracker</h1>
+      </div>
+     <input type="checkbox" id="check">
+     <label for="check">
+       <i class="fas fa-bars" id="btn"></i>
+       <i class="fas fa-times" id="cancel"></i>
+     </label>
+     <div class="sidebar">
+     <header>Fitness Tracker</header>
+     <ul>
+      <li><a href="/profile"><i class="fas fa-qrcode"></i>Profile</a></li>
+      <li><a href="/workoutHistory"><i class="fas fa-link"></i>Workout History</a></li>
+      <li><a href="/calculator"><i class="fas fa-stream"></i>Macro Calculator</a></li>
+      <li><a href="/favourites"><i class="fas fa-calendar-week"></i>Favourites</a></li>
+     </ul>
+    </div>
+   <div class="conteiner">
+    <form>
+      <div class="mb-3">
+        <label for="wname" class="form-label">Workout Name</label><br>
+        <input type="text" class="form-control" name="wname">
+      </div>
+      <label for="description">Describe</label><br>
+      <textarea name="description" id="" cols="30" rows="10"></textarea>
+
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  </body>
+</html>
