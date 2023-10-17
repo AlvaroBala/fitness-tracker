@@ -6,7 +6,7 @@
       <title>Transparent Login Form HTML CSS</title>
       <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles.css') }}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-      <img src="{{ url_for('static', filename='img/my_img.png') }}">
+ 
    </head>
    <body>
     <img  class="bg-img" src="{{ url_for('static', filename='360_F_429356296_CVQ5LkC6Pl55kUNLqLisVKgTw9vjyif1.jpg') }}" alt="">
@@ -16,12 +16,26 @@
             <form action="/login" method="post">
                <div class="field">
                   <span class="fa fa-user"></span>
-                  <input type="text" for="email" name="email" required placeholder="Email">
+                  <input type="text" for="email" name="email"   placeholder="Email">
+                  {% with messages = get_flashed_messages(category_filter=["emailSignUp"]) %}
+                  {% if messages %}
+                  {% for message in messages %}
+                  <p class="text-white text-center" style="color: red;">{{message}}</p>
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
                </div>
                <div class="field space">
                   <span class="fa fa-lock"></span>
-                  <input type="password" for="password" name="password" class="pass-key" required placeholder="Password">
+                  <input type="password" for="password" name="password" class="pass-key"   placeholder="Password">
                   <span class="show">SHOW</span>
+                  {% with messages = get_flashed_messages(category_filter=["password"]) %}
+                  {% if messages %}
+                  {% for message in messages %}
+                  <p class="text-white text-center" style="color: red;">{{message}}</p>
+                  {% endfor %}
+                  {% endif %}
+                  {% endwith %}
                </div>
                <div class="field">
                   <input type="submit" value="LOGIN">

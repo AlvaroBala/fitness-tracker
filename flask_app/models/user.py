@@ -80,6 +80,15 @@ class User:
         if user['confirm_password'] != user['password']:
             flash('The passwords do not match',  'passwordConfirm')
             is_valid = False
+        if not len(user['age']):
+            flash('Please enter age', 'age')
+            is_valid = False
+        if not len(user['height']):
+            flash('Please enter height', 'height')
+            is_valid = False
+        if not len(user['weight']):
+            flash('Please enter weight', 'weight')
+            is_valid = False
         return is_valid
     
     @staticmethod

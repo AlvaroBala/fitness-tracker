@@ -87,9 +87,21 @@ def dashboard():
 
 @app.route('/profile')
 def addUser():
-    return render_template('profile.html')
+    loggedUserData = {
+        'user_id': session['user_id']
+    } 
+    loggedUser = User.get_user_by_id(loggedUserData)
+    return render_template('profile.html',loggedUser = User.get_user_by_id(loggedUserData))
 
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
+
+@app.route('/calculator')
+def calculator():
+    loggedUserData = {
+        'user_id': session['user_id']
+    } 
+    loggedUser = User.get_user_by_id(loggedUserData)
+    return render_template('macroCalculater.html',loggedUser = User.get_user_by_id(loggedUserData))

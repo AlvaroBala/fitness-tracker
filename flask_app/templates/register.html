@@ -9,7 +9,27 @@
     <!---Custom CSS File--->
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-
+    <style>
+      /* width */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+       
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+    </style>
   </head>
   <body id="background-image">
     <video autoplay loop muted plays-inline class="background-clip"><source src="{{ url_for('static', filename='video.mp4') }}"type="video/mp4"></video>
@@ -18,50 +38,108 @@
       <form action="/register" method="post"  class="form">
         <div class="input-box">
           <label for="first_name">First Name</label>
-          <input type="text" name="first_name" placeholder="Enter first name" required />
+          <input type="text" name="first_name" class="height" placeholder="Enter first name"    />
+          {% with messages = get_flashed_messages(category_filter=["firstName"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class="text-center" style="color: red;">{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
         </div>
         <div class="input-box">
           <label for="last_name">Last Name</label>
-          <input type="text" name="last_name" placeholder="Enter last name" required />
+          <input type="text" name="last_name" class="height" placeholder="Enter last name"    />
+          {% with messages = get_flashed_messages(category_filter=["lastName"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class="text-white text-center" style="color: red;">{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
         </div>
 
         <div class="input-box">
           <label for="email">Email Address</label>
-          <input type="text" name="email" placeholder="Enter email address" required />
+          <input type="text" name="email" class="height" placeholder="Enter email address"    />
+          {% with messages = get_flashed_messages(category_filter=["emailSignUp"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class="text-white text-center" style="color: red;">{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
         </div>
 
         <div class="input-box">
           <label for="password">Password</label>
-          <input type="text"  name="password" placeholder="Enter password " required />
+          <input type="password" class="height" name="password" placeholder="Enter password "    />
+          {% with messages = get_flashed_messages(category_filter=["password"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class="text-white text-center" style="color: red;">{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
         </div>
 
         <div class="input-box">
           <label for="password">Confirm Password</label>
-          <input type="text" name="confirm_password" placeholder="Enter password again" required />
+          <input type="password" class="height" name="confirm_password" placeholder="Enter password again"    />
+          {% with messages = get_flashed_messages(category_filter=["passwordConfirm"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class="text-white text-center" style="color: red;">{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
         </div>
 
         <div class="register">
           <div class="input-box">
             <label for="age">Age</label>
-            <input type="number" name="age" placeholder="Enter Your Age" required />
+            <input type="number" class="height" name="age" placeholder="Enter Your Age"    />
+            {% with messages = get_flashed_messages(category_filter=["age"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class="text-white text-center" style="color: red;">{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
           </div>
   
           <div class="input-box">
             <label for="height"> Height</label>
-            <input type="number" name="height" placeholder="Enter Your Height" required />
+            <input type="number" class="height" name="height" placeholder="Enter Your Height"    />
+            {% with messages = get_flashed_messages(category_filter=["height"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class="text-white text-center" style="color: red;">{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
           </div>
   
           <div class="input-box">
             <label for="weight">Weight</label>
-            <input type="number" name="weight" placeholder="Enter Your Weight" required />
+            <input type="number" class="height" name="weight" placeholder="Enter Your Weight"    />
+            {% with messages = get_flashed_messages(category_filter=["weight"]) %}
+          {% if messages %}
+          {% for message in messages %}
+          <p class="text-white text-center" style="color: red;">{{message}}</p>
+          {% endfor %}
+          {% endif %}
+          {% endwith %}
           </div>
         </div>
 
 
-        <div class="column">
-        <button type="submit">Submit</button>
+        <div class=" d-flex justify-content-beetween">
+        <button type="submit" style="width: 50%!important;">Submit</button>
+        <a class="d-flex justify-content-center abc" href="/loginPage">Already have an account? Login!</a>
+
+        </div>
       </form>
-      <a class="d-flex justify-content-center abc" href="/loginPage">Already have an account? Login!</a>
     </section>
   </body>
-</html>
+</html> 
