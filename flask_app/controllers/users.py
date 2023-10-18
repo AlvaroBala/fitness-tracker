@@ -3,6 +3,8 @@ from flask_app import app
 from flask import render_template, redirect, session, request, flash
 
 from flask_app.models.user import User
+from flask_app.models.workout import Workout
+from flask_app.models.calorie import Calorie
 #import
 
 
@@ -32,7 +34,7 @@ def registerPage():
 
 
 @app.route('/login', methods = ['POST'])
-def login():
+def loginone():
     if 'user_id' in session:
         return redirect('/')
     user = User.get_user_by_email(request.form)
@@ -105,3 +107,17 @@ def calculator():
     } 
     loggedUser = User.get_user_by_id(loggedUserData)
     return render_template('macroCalculater.html',loggedUser = User.get_user_by_id(loggedUserData))
+
+@app.route('/login', methods = ['POST'])
+def login():
+    if 'user_id' in session:
+        return redirect('/')
+    user = User.get_user_by_email(request.form)
+    if not user:
+        flash('This email does not exist.', 'emailLogin')
+        return redirect(request.referrer)
+    if not bcrypt.check_password_hash(user['password'], request.form['password']):
+        flash('Your password is wrong!', 'passwordLogin')
+        return redirect(request.referrer)
+    session['user_id'] = user['id']
+    return redirect('/')

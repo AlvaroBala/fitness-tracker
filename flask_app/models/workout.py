@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 import re	# the regex module
 from flask import flash
 # create a regular expression object that we'll use later   
-class Post:
+class Workout:
     db_name = 'db'
     def __init__( self , data ):
         self.id = data['id']

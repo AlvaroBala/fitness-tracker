@@ -17,7 +17,7 @@
                <div class="field">
                   <span class="fa fa-user"></span>
                   <input type="text" for="email" name="email"   placeholder="Email">
-                  {% with messages = get_flashed_messages(category_filter=["emailSignUp"]) %}
+                  {% with messages = get_flashed_messages(category_filter=["emailLogin"]) %}
                   {% if messages %}
                   {% for message in messages %}
                   <p class="text-white text-center" style="color: red;">{{message}}</p>
@@ -29,7 +29,7 @@
                   <span class="fa fa-lock"></span>
                   <input type="password" for="password" name="password" class="pass-key"   placeholder="Password">
                   <span class="show">SHOW</span>
-                  {% with messages = get_flashed_messages(category_filter=["password"]) %}
+                  {% with messages = get_flashed_messages(category_filter=["passwordLogin"]) %}
                   {% if messages %}
                   {% for message in messages %}
                   <p class="text-white text-center" style="color: red;">{{message}}</p>
