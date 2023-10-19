@@ -121,3 +121,9 @@ def login():
         return redirect(request.referrer)
     session['user_id'] = user['id']
     return redirect('/')
+
+@app.route('/workoutHistory')
+def workoutHistory():
+    if 'user_id' not in session:
+        return redirect('/')
+    return render_template('workoutHistory.html')

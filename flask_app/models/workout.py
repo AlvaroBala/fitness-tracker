@@ -40,11 +40,8 @@ class Workout:
     @classmethod
     def get_all_user_workout(cls, data):
         query = "SELECT * FROM workouts LEFT JOIN users on workouts.user_id = users.id WHERE workouts.user_id = %(user_id)s;"
-        # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL(cls.db_name).query_db(query, data)
-        # Create an empty list to append our instances of friends
         workouts = []
-        # Iterate over the db results and create instances of friends with cls.
         if results:
             for workout in results:
                 workouts.append( workout )

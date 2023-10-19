@@ -1,4 +1,42 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+@media (max-width: 768px) {
+  .sidebar {
+    left: -100%;
+    width: 100%;
+  }
+  /* Add a button to toggle the sidebar on small screens */
+  #check:checked ~ .sidebar {
+    left: 0;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  .sidebar header {
+    font-size: 18px;
+  }
+  .sidebar ul a {
+    font-size: 16px;
+    line-height: 50px;
+  }
+}
+@media (max-width: 768px) {
+  label #btn {
+    left: 10px;
+    top: 15px;
+  }
+  label #cancel {
+    left: -80px;
+    top: 7px;
+  }
+}
+@media (max-width: 768px) {
+  section {
+    background-size: cover;
+  }
+}
+
 *{
   padding: 0;
   margin: 0;
