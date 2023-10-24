@@ -31,7 +31,7 @@ def countCalorie():
         'user_id': session['user_id']
     }   
     Calorie.create_calorie(data)
-    return redirect('/')
+    return redirect('/calculator')
 # @app.route('/calculate/calorie', methods=['POST'])
 # def calculate_calorie():
 #     if 'user_id' not in session:
@@ -53,17 +53,31 @@ def countCalorie():
 
 from flask import render_template
 
+# @app.route('/calculate')
+# def calculate():
+#     if 'user_id' not in session:
+#         return redirect('/')
+
+#     loggedUserData = {
+#         'user_id': session['user_id']
+#     }
+#     caloriesData = {
+#         'num': request.form['num'],
+#         'time': request.form['time'],
+#         'user_id': session['user_id']
+#     }
+
+#     loggedUser = User.get_user_by_id(loggedUserData)
+#     calories = Calorie.get_all(caloriesData)
+
+#     return render_template('macroCalculater.html', loggedUser=loggedUser, calorie=calories)
+
+
 @app.route('/calculate')
-def calculate():
+def addthecalorie():
     if 'user_id' not in session:
         return redirect('/')
-
     loggedUserData = {
         'user_id': session['user_id']
     }
-
-    # Assuming you have the 'loggedUser' and 'calorie' data ready
-    loggedUser = User.get_user_by_id(loggedUserData)
-    calories = Calorie.get_all(loggedUserData)
-
-    return render_template('macroCalculater.html', loggedUser=loggedUser, calorie=calories)
+    return render_template('macroCalculator.html',loggedUser = User.get_user_by_id(loggedUserData))

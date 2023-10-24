@@ -50,9 +50,6 @@ def createWorkout():
 
     return redirect('/')
 
-
-
-    return redirect('/')
 # @app.route('/workoutHistory')
 # def workoutHistory():
 #     if 'user_id' not in session:
@@ -116,6 +113,3 @@ def add_calorie(id):
         'time': request.form['time']  
     }
     Calorie.addfavourite(data)
-    return redirect (request.referrer)
-    
-    

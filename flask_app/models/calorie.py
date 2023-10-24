@@ -22,13 +22,10 @@ class Calorie:
         return False
 
     @classmethod
-    def get_all(cls):
-        query = "SELECT * FROM calorie LEFT JOIN users on calories.user_id = users.id;"
-        # make sure to call the connectToMySQL function with the schema you are targeting.
-        results = connectToMySQL(cls.db_name).query_db(query)
-        # Create an empty list to append our instances of friends
+    def get_all(cls, data):
+        query = "SELECT * FROM calories LEFT JOIN users on calories.user_id=users.id where calories.user_id = %(user_id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
         calories = []
-        # Iterate over the db results and create instances of friends with cls.
         if results:
             for calorie in results:
                 calories.append( calorie )

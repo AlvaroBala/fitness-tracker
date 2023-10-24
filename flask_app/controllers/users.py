@@ -125,8 +125,9 @@ def calculator():
     #     'time': request.form['time'],
     # }
     loggedUser = User.get_user_by_id(loggedUserData)
+    calories = Calorie.get_all(loggedUserData)
     # calorieData = Calorie.create_calorie(calorieData)
-    return render_template('macroCalculater.html',loggedUser = User.get_user_by_id(loggedUserData))
+    return render_template('macroCalculater.html',loggedUser = User.get_user_by_id(loggedUserData), calories=calories)
 
 @app.route('/login', methods = ['POST'])
 def login():
