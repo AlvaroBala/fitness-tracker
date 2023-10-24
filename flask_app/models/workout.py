@@ -26,7 +26,6 @@ class Workout:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM workout LEFT JOIN users on workouts.user_id = users.id;"
-        # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL(cls.db_name).query_db(query)
         # Create an empty list to append our instances of friends
         workouts = []
@@ -45,7 +44,9 @@ class Workout:
         if results:
             for workout in results:
                 workouts.append( workout )
+            # print(workouts)
             return workouts
+        
         return workouts
     
     @classmethod
@@ -80,8 +81,37 @@ class Workout:
         if len(workout['description'])< 2:
             flash('Post content must be more than 2 characters', 'description')
             is_valid = False
-        if not len(workout['time']):
-            flash('please fill', 'time')
-            is_valid = False
+        # if not len(workout['time']):
+        #     flash('please fill', 'time')
+        #     is_valid = False
         
         return is_valid
+
+    @classmethod
+    def GetUserWhoFavouriteWorkouts(cls, data):
+        query = "SELECT favourites.user_id as id from favourites where workouts_id =  %(workouts_id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        workouts = []
+        if results:
+            for workout in results:
+                workouts.append( workout ["id"])
+            return workouts  
+        return workouts
+    
+    @classmethod
+    def addfavourite(cls, data):
+        query = "INSERT INTO favourites (user_id, workout_id) VALUES ( %(user_id)s,%(workout_id)s);"
+        return connectToMySQL(cls.db_name).query_db(query, data)
+
+    @classmethod
+    def allfavourite(cls, data):
+        query = "select * from favourites left join workouts on favourites.workout_id = workout_id where favourites.user_id = %(user_id)s;"
+        results = connectToMySQL(cls.db_name).query_db(query, data)
+        favourites = []
+        if results:
+            for favourite in results:
+                favourites.append( favourite )
+            # print(workouts)
+            return favourites
+        
+        return favourites

@@ -34,3 +34,17 @@ class Calorie:
                 calories.append( calorie )
             return calories
         return calories
+    # @staticmethod
+    # def validate_calorie(calorie):
+    #     is_valid = True
+    #     # test whether a field matches the pattern
+        
+    #     if not len(calorie['num']):
+    #         flash('Please set calories', 'num')
+    #         is_valid = False
+
+    #     return is_valid
+    @classmethod
+    def create_calorie(cls, data):
+        query = "INSERT INTO calories (num, time,user_id) VALUES ( %(num)s,%(time)s,%(user_id)s);"
+        return connectToMySQL(cls.db_name).query_db(query, data)

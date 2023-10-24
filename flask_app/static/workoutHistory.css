@@ -1,0 +1,54 @@
+/* Style for workout items */
+.workout-item {
+  background-color: #C0C0C0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 10px 10px 10px;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 10px; /* Add some padding for better spacing */
+  margin-right: 20px;
+}
+
+body {
+  background-color: #063146;
+}
+
+/* Style for individual workout details */
+.p1 {
+  font-size: 24px;
+  color: #001f3f; /* Red color for the date */
+  margin: 0;
+  float: right;
+}
+
+.p2 {
+  font-size: 18px;
+  color: #001f3f; /* Light blue color for the workout name */
+  margin: 10px 0;
+  align-items: center;
+}
+
+.p3 {
+  font-size: 16px;
+  color: #001f3f; /* Light green color for the description */
+  margin: 10px 0;
+  white-space: pre-wrap;
+}
+
+.sidebar-container {
+  width: 25%;
+}
+
+.container {
+  display: inline;
+  width: 75%;
+  float: right;
+}
+h1 {
+  text-align: center; /* Center the text */
+  background-color: #063146; /* Background color */
+  color: #fff; /* Text color */
+  padding: 10px; /* Add some padding for better spacing */
+  border-radius: 5px; /* Add rounded corners */
+}

@@ -1,7 +1,10 @@
 from flask_app import app
 
 from flask import render_template, redirect, session, request, flash
-
+# from datetime import datetime
+# from .env import UPLOAD_FOLDER
+# from .env import ALLOWED_EXTENSIONS
+# app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 from flask_app.models.user import User
 from flask_app.models.workout import Workout
 from flask_app.models.calorie import Calorie
@@ -11,6 +14,9 @@ from flask_app.models.calorie import Calorie
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
+# def allowed_file(filename):
+#     return '.' in filename and \
+#     filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 def index():
@@ -18,7 +24,16 @@ def index():
         return redirect('/dashboard')
     return redirect('/loginPage')
 
-
+@app.route('/favourites')
+def fav():
+    if 'user_id' not in session:
+        return redirect('/')
+    data = {
+        'user_id': session['user_id']
+    }
+    loggedUser = User.get_user_by_id(data)
+    favorites = Workout.allfavourite(data)
+    return render_template('favourites.html', loggedUser=loggedUser, favorites=favorites)
 
 @app.route('/loginPage')
 def loginPage():
@@ -105,7 +120,12 @@ def calculator():
     loggedUserData = {
         'user_id': session['user_id']
     } 
+    # calorieData={
+    #     'num': request.form['num'],
+    #     'time': request.form['time'],
+    # }
     loggedUser = User.get_user_by_id(loggedUserData)
+    # calorieData = Calorie.create_calorie(calorieData)
     return render_template('macroCalculater.html',loggedUser = User.get_user_by_id(loggedUserData))
 
 @app.route('/login', methods = ['POST'])
@@ -122,8 +142,9 @@ def login():
     session['user_id'] = user['id']
     return redirect('/')
 
-@app.route('/workoutHistory')
-def workoutHistory():
-    if 'user_id' not in session:
-        return redirect('/')
-    return render_template('workoutHistory.html')
+# @app.route('/workoutHistory')
+# def workoutHistory():
+#     if 'user_id' not in session:
+#         return redirect('/')
+#     return render_template('workoutHistory.html')
+

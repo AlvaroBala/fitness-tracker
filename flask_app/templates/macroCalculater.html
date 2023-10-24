@@ -1,85 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='dashboard.css') }}">
-    <script type="text/javascript" src="{{ url_for('static', filename='calculator.js') }}"></script>
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='calculator.css') }}">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<body>
-  <h1>CALORIE CALCULATOR</h1>
-  <div>
 
-    <input type="checkbox" id="check">
-     <label for="check">
-       <i class="fas fa-bars" id="btn"></i>
-       <i class="fas fa-times" id="cancel"></i>
-     </label>
-     <div class="sidebar">
-     <header>Fitness Tracker</header>
-     <ul>
-      <li><a href="/dashboard"><i class="fas fa-qrcode"></i>Dashboard</a></li>
-      <li><a href="/profile"><i class="fas fa-qrcode"></i>Profile</a></li>
-      <li><a href="/workoutHistory"><i class="fas fa-link"></i>Workout History</a></li>
-      <li><a href="/favourites"><i class="fas fa-calendar-week"></i>Favourites</a></li>
-     </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracker</title>
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='dashboard.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='calculator.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='calculator.css') }}">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='sidebar.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+
+  <div class="bigContainer">
+
+    <div>
+
+      <input type="checkbox" id="check">
+      <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+      </label>
+      <div class="sidebar">
+        <header>Fitness Tracker</header>
+        <ul>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/workoutHistory">Workout History</a></li>
+          <li><a href="/favourites">Favourites</a></li>
+          <li><a href="/logout">Log Out</a></li>
+
+        </ul>
+      </div>
+    </div>
+    <form action='/calculate/calorie' method="post">
+
+      <div class="container">
+        <h1>CALORIE CALCULATOR</h1>
+
+        <table class="calculator">
+          <!-- <input type="number" name="num"> -->
+          <tr>
+            <td colspan="4"> <input class="display-box" type="number" id="result"name="num" /> </td>
+            <!-- clearScreen() function clears all the values -->
+          </tr>
+          <td colspan="1">
+            <input type="button" value="C" onclick="clearScreen()" id="btn" />
+          </td>
+          <tr>
+            <!-- display() function displays the value of clicked button -->
+            <td> <input type="button" value="1" onclick="display('1')" /> </td>
+            <td> <input type="button" value="2" onclick="display('2')" /> </td>
+            <td> <input type="button" value="3" onclick="display('3')" /> </td>
+            <td> <input type="button" value="/" onclick="display('/')" /> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="4" onclick="display('4')" /> </td>
+            <td> <input type="button" value="5" onclick="display('5')" /> </td>
+            <td> <input type="button" value="6" onclick="display('6')" /> </td>
+            <td> <input type="button" value="-" onclick="display('-')" /> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="7" onclick="display('7')" /> </td>
+            <td> <input type="button" value="8" onclick="display('8')" /> </td>
+            <td> <input type="button" value="9" onclick="display('9')" /> </td>
+            <td> <input type="button" value="+" onclick="display('+')" /> </td>
+          </tr>
+          <tr>
+            <td> <input type="button" value="." onclick="display('.')" /> </td>
+            <td> <input type="button" value="0" onclick="display('0')" /> </td>
+
+            <!-- calculate() function evaluates the mathematical expression -->
+            <td> <input type="button" value="=" onclick="calculate()" id="btn" /> </td>
+            <td> <input type="button" value="*" onclick="display('*')" /> </td>
+          </tr>
+        </table>
+        <div class="end">
+
+          <div>
+            <label class="datelabel" for="time">Set Date</label>
+            <input class="dateinput" type="date" name="time">
+            <button class="form-submit-button">Submit</button>
+          </div>
+  
+        </div>
+      </div>
+    </form>
+    <div class="thetable">
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Number of Kcal</th>
+            <th scope="col">DATE</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {% for calorie in calories %}
+          <tr>
+            <th scope="row">1</th>
+            <td>{{ calorie.num}}</td>
+            <td>{{ calorie.time}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
-    <div class="container">
-
-      <table class="calculator" >
-        <tr>
-          <td colspan="3"> <input class="display-box" type="text" id="result" disabled /> </td>
-       
-          <!-- clearScreen() function clears all the values -->
-          <td> <input type="button" value="C" onclick="clearScreen()" id="btn" /> </td>
-        </tr>
-        <tr>
-          <!-- display() function displays the value of clicked button -->
-          <td> <input type="button" value="1" onclick="display('1')" /> </td>
-          <td> <input type="button" value="2" onclick="display('2')" /> </td>
-          <td> <input type="button" value="3" onclick="display('3')" /> </td>
-          <td> <input type="button" value="/" onclick="display('/')" /> </td>
-        </tr>
-        <tr>
-          <td> <input type="button" value="4" onclick="display('4')" /> </td>
-          <td> <input type="button" value="5" onclick="display('5')" /> </td>
-          <td> <input type="button" value="6" onclick="display('6')" /> </td>
-          <td> <input type="button" value="-" onclick="display('-')" /> </td>
-        </tr>
-        <tr>
-          <td> <input type="button" value="7" onclick="display('7')" /> </td>
-          <td> <input type="button" value="8" onclick="display('8')" /> </td>
-          <td> <input type="button" value="9" onclick="display('9')" /> </td>
-          <td> <input type="button" value="+" onclick="display('+')" /> </td>
-        </tr>
-        <tr>
-          <td> <input type="button" value="." onclick="display('.')" /> </td>
-          <td> <input type="button" value="0" onclick="display('0')" /> </td>
-       
-          <!-- calculate() function evaluates the mathematical expression -->
-          <td> <input type="button" value="=" onclick="calculate()" id="btn" /> </td>
-          <td> <input type="button" value="*" onclick="display('*')" /> </td>
-        </tr>
-      </table>
-      <form action="/calculate" method="post">
-        <div>
-          <label for="name" style="color: #063146;font-size: larger;">Set Calories</label>
-          <input type="text" name="name" id="name" value="" />
-        </div>
-        <div>
-          <label for="name" style="color: #063146;font-size: larger;margin-top: 10%;">Date</label>
-          <input type="date" name="name" id="name" value="" />
-        </div>
-        <div>
-          <input class="g-button g-button-submit"style='margin-top: 10%;' type="submit" value="Submit" />
-        </div>
-      </form>  
-    </div>
 
 </body>
+
 </html>

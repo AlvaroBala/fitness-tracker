@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Fitness Tracker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='dashboard.css') }}">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='profile.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='sidebar.css') }}">
+
 
 
 
@@ -22,28 +24,31 @@
         <div class="sidebar">
         <header>Fitness Tracker</header>
         <ul>
-         <li><a href="/dashboard"><i class="fas fa-qrcode"></i>Dashboard</a></li>
-         <li><a href="/workoutHistory"><i class="fas fa-link"></i>Workout History</a></li>
-         <li><a href="/calculator"><i class="fas fa-stream"></i>Macro Calculator</a></li>
-         <li><a href="/favourites"><i class="fas fa-calendar-week"></i>Favourites</a></li>
+         <li><a href="/dashboard">Dashboard</a></li>
+         <li><a href="/workoutHistory"></i>Workout History</a></li>
+         <li><a href="/calculator"></i>Macro Calculator</a></li>
+         <li><a href="/favourites"></i>Favourites</a></li>
+         <li><a href="/logout">Log Out</a></li>
+
+
         </ul>
        </div>
     </div>
-    <h1>your profile</h1>
-    <a href="/logout">log out</a>
+    <h1><b>{{loggedUser.first_name}} {{loggedUser.last_name}}</b></h1>
     <div class="container">
         <div class="main-body">       
               <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="d-flex flex-column align-items-center text-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-                       
+                  <form enctype="multipart/form-data" action="">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                          <a href="/logout" class="logout-button">Logout</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
+                  </form>
                 </div>
                 <div class="col-md-8">
                   <div class="card mb-3">
@@ -93,11 +98,7 @@
                         </div>
                       </div>
                       <hr>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                        </div>
-                      </div>
+                     
                     </div>
                   </div>
     
@@ -106,6 +107,7 @@
               </div>
     
             </div>
-        </div>
+
+    </div>
 </body>
 </html>

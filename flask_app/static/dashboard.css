@@ -37,97 +37,6 @@
   }
 }
 
-*{
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  text-decoration: none;
-}
-body {
-  font-family: 'Roboto', sans-serif;
-}
-.sidebar {
-  position: fixed;
-  left: -250px;
-  width: 250px;
-  height: 100%;
-  background: #042331;
-  transition: all .5s ease;
-}
-.sidebar header {
-  font-size: 22px;
-  color: white;
-  line-height: 70px;
-  text-align: center;
-  background: #063146;
-  user-select: none;
-}
-.sidebar ul a{
-  display: block;
-  height: 100%;
-  width: 100%;
-  line-height: 65px;
-  font-size: 20px;
-  color: white;
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-bottom: 1px solid black;
-  border-top: 1px solid rgba(255,255,255,.1);
-  transition: .4s;
-}
-ul li:hover a{
-  padding-left: 50px;
-}
-.sidebar ul a i{
-  margin-right: 16px;
-}
-#check{
-  display: none;
-}
-label #btn,label #cancel{
-  position: absolute;
-  background: #042331;
-  border-radius: 3px;
-  cursor: pointer;
-}
-label #btn{
-  left: 40px;
-  top: 25px;
-  font-size: 35px;
-  color: white;
-  padding: 6px 12px;
-  transition: all .5s;
-}
-label #cancel{
-  z-index: 1111;
-  left: -195px;
-  top: 17px;
-  font-size: 30px;
-  color: #0a5275;
-  padding: 4px 9px;
-  transition: all .5s ease;
-}
-#check:checked ~ .sidebar{
-  left: 0;
-}
-#check:checked ~ label #btn{
-  left: 250px;
-  opacity: 0;
-  pointer-events: none;
-}
-#check:checked ~ label #cancel{
-  left: 195px;
-}
-#check:checked ~ section{
-  margin-left: 250px;
-}
-section{
-  background: url(bg.jpeg) no-repeat;
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-  transition: all .5s;
-}
 .h1{
     display: inline;
     float: right;
@@ -140,4 +49,77 @@ section{
 }
 body{
     background-color: #063146;
+}
+.conteiner{
+  display: flex;
+  justify-content: space-evenly;
+}
+/* Style the container for the form */
+.conteiner {
+  width: 80%;
+  height: 100%;
+  background-color: #063146;
+  float: right;
+  padding: 20px; /* Add some padding for spacing */
+}
+
+/* Style form labels */
+label {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 10px; /* Add some spacing between labels and inputs */
+}
+
+/* Style input elements */
+input[type="text"],
+textarea,
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  margin-bottom: 20px; /* Add some spacing between input elements */
+  color: #333;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* Style the "Add Additional" button */
+#showAdditional {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+#showAdditional:hover {
+  background-color: #0073a8;
+}
+/* Style the h1 element */
+h1 {
+  font-size: 24px; /* Adjust the font size as needed */
+  color: #ffffff; /* Text color */
+  margin-top: 25px; /* Add spacing at the top of the heading */
+  text-align: center; /* Center the text */
+}
+form{
+  width: 80%;
 }
