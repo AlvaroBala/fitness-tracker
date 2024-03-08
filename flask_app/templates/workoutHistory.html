@@ -34,9 +34,8 @@
         </div>
         {% for item in workout%}
        <div class="workout-item">
-        <a href="/favourite/{{item.id}}"><i class="fa-solid fa-star"></i>ADD TO FAVOURITES</a>
-           <p class="p1">
-               DATE: {{item.time}}     
+        <a href="/add_to_favourites/{{ item.id }}">Add to Favourites</a>
+        DATE: {{item.time}}     
            </p>
            <p class="p2">
                <b>Workout Name:</b> {{item.wname}}

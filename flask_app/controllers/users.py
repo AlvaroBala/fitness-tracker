@@ -148,4 +148,16 @@ def login():
 #     if 'user_id' not in session:
 #         return redirect('/')
 #     return render_template('workoutHistory.html')
+@app.route('/add_to_favourites/<int:workout_id>')
+def add_to_favourites(workout_id):
+    if 'user_id' not in session:
+        return redirect('/loginPage')
+
+    data = {
+        'user_id': session['user_id'],
+        'workout_id': workout_id
+    }
+
+    Workout.addfavourite(data)
+    return redirect('/favourites')
 
